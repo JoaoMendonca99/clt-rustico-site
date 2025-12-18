@@ -4,6 +4,9 @@ import { Menu, X, ShieldAlert, Terminal } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
+// ✅ Vite asset import (funciona com base do GitHub Pages)
+import serverLogo from "/images/server-logo.png";
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [location] = useLocation();
@@ -19,14 +22,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden relative">
       {/* Scanlines Overlay */}
       <div className="fixed inset-0 pointer-events-none z-50 bg-scanlines opacity-10 mix-blend-overlay"></div>
-      
+
       {/* Header */}
       <header className="sticky top-0 z-40 w-full border-b-2 border-primary/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-20 items-center justify-between">
           <Link href="/">
             <a className="flex items-center gap-3 group">
               <div className="relative w-10 h-10 bg-primary/20 border border-primary flex items-center justify-center overflow-hidden group-hover:bg-primary/30 transition-colors">
-                <img src="/images/server-logo.png" alt="Logo" className="w-full h-full object-cover" />
+                <img
+                  src={serverLogo}
+                  alt="Logo"
+                  className="w-full h-full object-cover"
+                />
                 <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
               </div>
               <div className="flex flex-col">
@@ -56,8 +63,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </a>
               </Link>
             ))}
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold tracking-wider uppercase rounded-none clip-path-button"
               onClick={() => window.open("https://discord.gg/WGzyT4TB", "_blank")}
             >
@@ -94,7 +101,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </a>
               </Link>
             ))}
-            <Button 
+            <Button
               className="mt-4 w-full bg-primary text-primary-foreground font-bold tracking-wider uppercase rounded-none h-12"
               onClick={() => window.open("https://discord.gg/WGzyT4TB", "_blank")}
             >
@@ -105,29 +112,31 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       )}
 
       {/* Main Content */}
-      <main className="flex-1 relative">
-        {children}
-      </main>
+      <main className="flex-1 relative">{children}</main>
 
       {/* Footer */}
       <footer className="border-t-2 border-primary/30 bg-card py-12 mt-auto relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
         <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-          
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <Terminal className="text-primary w-6 h-6" />
-              <span className="font-display text-lg font-bold text-foreground">CLT RÚSTICO</span>
+              <span className="font-display text-lg font-bold text-foreground">
+                CLT RÚSTICO
+              </span>
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Servidor Rust comunitário focado em jogabilidade justa, sem Pay to Win. Wipe quinzenal.
+              Servidor Rust comunitário focado em jogabilidade justa, sem Pay to
+              Win. Wipe quinzenal.
             </p>
           </div>
 
           {/* Links */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-display text-primary font-bold uppercase tracking-wider">Navegação</h3>
+            <h3 className="font-display text-primary font-bold uppercase tracking-wider">
+              Navegação
+            </h3>
             <div className="flex flex-col gap-2">
               {navItems.map((item) => (
                 <Link key={item.path} href={item.path}>
@@ -141,7 +150,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Legal / Info */}
           <div className="flex flex-col gap-4">
-            <h3 className="font-display text-primary font-bold uppercase tracking-wider">Status</h3>
+            <h3 className="font-display text-primary font-bold uppercase tracking-wider">
+              Status
+            </h3>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               Servidor Online
@@ -151,11 +162,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <span>Não afiliado à Facepunch Studios</span>
             </div>
             <p className="text-xs text-muted-foreground/50 mt-4">
-              &copy; {new Date().getFullYear()} CLT Rústico. Todos os direitos reservados.
+              &copy; {new Date().getFullYear()} CLT Rústico. Todos os direitos
+              reservados.
             </p>
           </div>
         </div>
-        
+
         {/* Decorative Background Elements */}
         <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
       </footer>

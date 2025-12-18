@@ -17,7 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -39,9 +38,11 @@ jobs:
       - name: Build site
         run: pnpm run build
 
-      # SPA fallback (evita 404 ao dar refresh em rota)
+      # SPA fallback (GitHub Pages serve 404.html quando cai em rota direta)
       - name: SPA fallback (404.html)
-        run: cp dist/index.html dist/404.html
+        run: |
+          test -f dist/index.html
+          cp dist/index.html dist/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -54,7 +55,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
