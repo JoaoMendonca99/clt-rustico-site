@@ -1,6 +1,9 @@
 import { Check, Star, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// ✅ Vite asset import (funciona com base do GitHub Pages)
+import vipCardBg from "/images/vip-card-bg.jpg";
+
 export default function Vips() {
   return (
     <div className="min-h-screen pt-20 pb-24">
@@ -9,7 +12,8 @@ export default function Vips() {
           APOIE O <span className="text-primary">PROJETO</span>
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
-          Torne-se um VIP para ajudar a manter o servidor online e receba benefícios exclusivos de qualidade de vida.
+          Torne-se um VIP para ajudar a manter o servidor online e receba
+          benefícios exclusivos de qualidade de vida.
           <br />
           <span className="text-primary font-bold uppercase text-sm tracking-widest mt-2 block">
             Lembre-se: Zero Pay to Win
@@ -26,20 +30,29 @@ export default function Vips() {
             <div className="p-8 flex-1 flex flex-col">
               <div className="flex justify-between items-start mb-6">
                 <div>
-                  <h3 className="text-3xl font-display font-bold text-white">VIP</h3>
-                  <p className="text-muted-foreground text-sm uppercase tracking-wider">Acesso Básico</p>
+                  <h3 className="text-3xl font-display font-bold text-white">
+                    VIP
+                  </h3>
+                  <p className="text-muted-foreground text-sm uppercase tracking-wider">
+                    Acesso Básico
+                  </p>
                 </div>
                 <Star className="w-10 h-10 text-gray-500" />
               </div>
-              
+
               <div className="text-4xl font-mono font-bold text-white mb-8">
-                R$ 15,00 <span className="text-sm text-muted-foreground font-sans font-normal">/ mês</span>
+                R$ 15,00{" "}
+                <span className="text-sm text-muted-foreground font-sans font-normal">
+                  / mês
+                </span>
               </div>
 
               <ul className="space-y-4 mb-8 flex-1">
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <span className="text-gray-300">Slot reservado (entra sem fila)</span>
+                  <span className="text-gray-300">
+                    Slot reservado (entra sem fila)
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
@@ -47,7 +60,9 @@ export default function Vips() {
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <span className="text-gray-300">Sign Artist (pintar placas com imagens)</span>
+                  <span className="text-gray-300">
+                    Sign Artist (pintar placas com imagens)
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
@@ -68,27 +83,36 @@ export default function Vips() {
           <div className="relative h-full bg-[#1a1a1a] border border-primary/30 rounded-lg overflow-hidden flex flex-col">
             {/* Background Texture */}
             <div className="absolute inset-0 opacity-20 pointer-events-none">
-               <img src="/images/vip-card-bg.jpg" alt="" className="w-full h-full object-cover mix-blend-overlay" />
+              <img
+                src={vipCardBg}
+                alt=""
+                className="w-full h-full object-cover mix-blend-overlay"
+              />
             </div>
-            
+
             <div className="h-2 bg-primary w-full relative z-10"></div>
             <div className="p-8 flex-1 flex flex-col relative z-10">
               <div className="absolute top-4 right-4 bg-primary text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">
                 Mais Popular
               </div>
-              
+
               <div className="flex justify-between items-start mb-6">
                 <div>
                   <h3 className="text-3xl font-display font-bold text-white flex items-center gap-2">
                     VIP <span className="text-primary">+</span>
                   </h3>
-                  <p className="text-primary/80 text-sm uppercase tracking-wider">Acesso Premium</p>
+                  <p className="text-primary/80 text-sm uppercase tracking-wider">
+                    Acesso Premium
+                  </p>
                 </div>
                 <Zap className="w-10 h-10 text-primary" />
               </div>
-              
+
               <div className="text-4xl font-mono font-bold text-white mb-8">
-                R$ 25,00 <span className="text-sm text-muted-foreground font-sans font-normal">/ mês</span>
+                R$ 25,00{" "}
+                <span className="text-sm text-muted-foreground font-sans font-normal">
+                  / mês
+                </span>
               </div>
 
               <ul className="space-y-4 mb-8 flex-1">
@@ -96,25 +120,33 @@ export default function Vips() {
                   <div className="bg-primary/20 p-1 rounded-full">
                     <Check className="w-4 h-4 text-primary shrink-0" />
                   </div>
-                  <span className="text-white font-medium">Todos os benefícios do VIP</span>
+                  <span className="text-white font-medium">
+                    Todos os benefícios do VIP
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-primary/20 p-1 rounded-full">
                     <Check className="w-4 h-4 text-primary shrink-0" />
                   </div>
-                  <span className="text-gray-300">Furnace Splitter (organiza fornalhas)</span>
+                  <span className="text-gray-300">
+                    Furnace Splitter (organiza fornalhas)
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-primary/20 p-1 rounded-full">
                     <Check className="w-4 h-4 text-primary shrink-0" />
                   </div>
-                  <span className="text-gray-300">Box Sorter (organiza baús)</span>
+                  <span className="text-gray-300">
+                    Box Sorter (organiza baús)
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-primary/20 p-1 rounded-full">
                     <Check className="w-4 h-4 text-primary shrink-0" />
                   </div>
-                  <span className="text-gray-300">Building Skins (todas as DLCs de construção)</span>
+                  <span className="text-gray-300">
+                    Building Skins (todas as DLCs de construção)
+                  </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="bg-primary/20 p-1 rounded-full">
@@ -136,8 +168,7 @@ export default function Vips() {
         <div className="bg-background/50 border border-white/5 p-6 max-w-2xl mx-auto rounded-lg">
           <h4 className="text-white font-bold mb-2">Nota de Transparência</h4>
           <p className="text-sm text-muted-foreground">
-            Todo o valor arrecadado é reinvestido no pagamento da hospedagem dedicada, 
-            plugins premium e divulgação do servidor. Não visamos lucro.
+            Todo o valor arrecadado é reinvestido no pagamento da hospedagem dedicada, plugins premium e divulgação do servidor. Não visamos lucro.
           </p>
         </div>
       </section>

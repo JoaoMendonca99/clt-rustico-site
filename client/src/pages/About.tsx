@@ -1,14 +1,17 @@
 import { Separator } from "@/components/ui/separator";
 
+// ✅ Vite asset import (funciona com base do GitHub Pages)
+import aboutBg from "/images/about-bg.jpg";
+
 export default function About() {
   return (
     <div className="min-h-screen pt-20 pb-24">
       {/* Header Section */}
       <section className="relative py-20 bg-card overflow-hidden">
         <div className="absolute inset-0">
-          <img 
-            src="/images/about-bg.jpg" 
-            alt="Industrial Texture" 
+          <img
+            src={aboutBg}
+            alt="Industrial Texture"
             className="w-full h-full object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
@@ -31,13 +34,13 @@ export default function About() {
               Nossa Filosofia
             </h3>
             <p className="text-gray-300 leading-relaxed text-lg">
-              O CLT Rústico nasceu da necessidade de um servidor brasileiro que respeitasse o tempo do jogador. 
-              Sabemos que nem todos podem jogar 24 horas por dia, por isso criamos um ambiente onde a estratégia 
+              O CLT Rústico nasceu da necessidade de um servidor brasileiro que respeitasse o tempo do jogador.
+              Sabemos que nem todos podem jogar 24 horas por dia, por isso criamos um ambiente onde a estratégia
               e a habilidade valem mais que o tempo online.
             </p>
             <p className="text-gray-300 leading-relaxed text-lg mt-4">
-              Nosso foco é oferecer uma experiência <span className="text-primary font-bold">Vanilla+</span>, 
-              mantendo a essência do jogo original mas com pequenas melhorias de qualidade de vida que não 
+              Nosso foco é oferecer uma experiência <span className="text-primary font-bold">Vanilla+</span>,
+              mantendo a essência do jogo original mas com pequenas melhorias de qualidade de vida que não
               afetam o combate ou a economia de forma injusta.
             </p>
           </div>
@@ -74,7 +77,7 @@ export default function About() {
               </h3>
               <Separator className="my-6 bg-white/10" />
               <p className="text-center text-muted-foreground mb-8">
-                Nós acreditamos que a vitória deve ser conquistada, não comprada. 
+                Nós acreditamos que a vitória deve ser conquistada, não comprada.
                 Em nosso servidor, você nunca encontrará:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -99,7 +102,7 @@ export default function About() {
               Compromisso da Staff
             </h4>
             <p className="text-sm text-muted-foreground">
-              Nossa equipe de administração não joga no servidor. Estamos aqui apenas para garantir 
+              Nossa equipe de administração não joga no servidor. Estamos aqui apenas para garantir
               que as regras sejam seguidas e para ajudar com problemas técnicos. Transparência total.
             </p>
           </div>
