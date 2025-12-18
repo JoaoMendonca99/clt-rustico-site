@@ -35,20 +35,19 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      # Build do Vite (seu projeto está em /client)
+      # roda o build do repo (ele já sabe que o Vite root é /client)
+      # e seu vite.config joga saída em dist/public
       - name: Build site
         run: pnpm run build
-        working-directory: client
 
-      # SPA fallback: GitHub Pages devolve 404 em rotas do react-router
+      # SPA fallback (React Router etc.)
       - name: SPA fallback (404.html)
-        run: cp dist/index.html dist/404.html
-        working-directory: client
+        run: cp dist/public/index.html dist/public/404.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: client/dist
+          path: dist/public
 
   deploy:
     needs: build
