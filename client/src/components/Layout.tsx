@@ -1,0 +1,164 @@
+import { Link, useLocation } from "wouter";
+import { cn } from "@/lib/utils";
+import { Menu, X, ShieldAlert, Terminal } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [location] = useLocation();
+
+  const navItems = [
+    { name: "INÍCIO", path: "/" },
+    { name: "SOBRE", path: "/sobre" },
+    { name: "VIPS", path: "/vips" },
+    { name: "REGRAS", path: "/regras" },
+  ];
+
+  return (
+    <div className="min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden relative">
+      {/* Scanlines Overlay */}
+      <div className="fixed inset-0 pointer-events-none z-50 bg-scanlines opacity-10 mix-blend-overlay"></div>
+      
+      {/* Header */}
+      <header className="sticky top-0 z-40 w-full border-b-2 border-primary/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-20 items-center justify-between">
+          <Link href="/">
+            <a className="flex items-center gap-3 group">
+              <div className="relative w-10 h-10 bg-primary/20 border border-primary flex items-center justify-center overflow-hidden group-hover:bg-primary/30 transition-colors">
+                <img src="/images/server-logo.png" alt="Logo" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-display text-xl font-bold tracking-wider text-primary group-hover:text-primary/80 transition-colors">
+                  CLT RÚSTICO
+                </span>
+                <span className="text-[10px] text-muted-foreground tracking-[0.2em] uppercase">
+                  Servidor Solo/Duo
+                </span>
+              </div>
+            </a>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <Link key={item.path} href={item.path}>
+                <a
+                  className={cn(
+                    "text-sm font-bold tracking-widest hover:text-primary transition-colors relative py-1",
+                    location === item.path
+                      ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-primary"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  {item.name}
+                </a>
+              </Link>
+            ))}
+            <Button 
+              variant="outline" 
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold tracking-wider uppercase rounded-none clip-path-button"
+              onClick={() => window.open("https://discord.gg/WGzyT4TB", "_blank")}
+            >
+              Discord
+            </Button>
+          </nav>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden p-2 text-primary hover:bg-primary/10 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Nav Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-30 bg-background/95 backdrop-blur-sm md:hidden pt-24 px-6">
+          <nav className="flex flex-col gap-6">
+            {navItems.map((item) => (
+              <Link key={item.path} href={item.path}>
+                <a
+                  className={cn(
+                    "text-2xl font-display font-bold tracking-widest hover:text-primary transition-colors border-l-4 pl-4",
+                    location === item.path
+                      ? "text-primary border-primary"
+                      : "text-muted-foreground border-transparent"
+                  )}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              </Link>
+            ))}
+            <Button 
+              className="mt-4 w-full bg-primary text-primary-foreground font-bold tracking-wider uppercase rounded-none h-12"
+              onClick={() => window.open("https://discord.gg/WGzyT4TB", "_blank")}
+            >
+              Entrar no Discord
+            </Button>
+          </nav>
+        </div>
+      )}
+
+      {/* Main Content */}
+      <main className="flex-1 relative">
+        {children}
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t-2 border-primary/30 bg-card py-12 mt-auto relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+        <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+          
+          {/* Brand */}
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <Terminal className="text-primary w-6 h-6" />
+              <span className="font-display text-lg font-bold text-foreground">CLT RÚSTICO</span>
+            </div>
+            <p className="text-sm text-muted-foreground max-w-xs">
+              Servidor Rust comunitário focado em jogabilidade justa, sem Pay to Win. Wipe quinzenal.
+            </p>
+          </div>
+
+          {/* Links */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-display text-primary font-bold uppercase tracking-wider">Navegação</h3>
+            <div className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <Link key={item.path} href={item.path}>
+                  <a className="text-sm text-muted-foreground hover:text-primary transition-colors w-fit">
+                    {item.name}
+                  </a>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Legal / Info */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-display text-primary font-bold uppercase tracking-wider">Status</h3>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              Servidor Online
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
+              <ShieldAlert className="w-4 h-4 text-orange-500" />
+              <span>Não afiliado à Facepunch Studios</span>
+            </div>
+            <p className="text-xs text-muted-foreground/50 mt-4">
+              &copy; {new Date().getFullYear()} CLT Rústico. Todos os direitos reservados.
+            </p>
+          </div>
+        </div>
+        
+        {/* Decorative Background Elements */}
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+      </footer>
+    </div>
+  );
+}
