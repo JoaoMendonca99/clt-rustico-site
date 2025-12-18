@@ -38,10 +38,33 @@ jobs:
       - name: Build site
         run: pnpm build
 
+      - name: Prepare Pages artifact (_site)
+        run: |
+          set -euxo pipefail
+          rm -rf _site
+          mkdir -p _site
+
+          if [ -d "dist/public" ]; then
+            cp -r dist/public/* _site/
+          elif [ -d "client/dist" ]; then
+            cp -r client/dist/* _site/
+          elif [ -d "dist" ]; then
+            cp -r dist/* _site/
+          else
+            echo "No build output found. Listing folders:"
+            ls -la
+            echo "Searching for dist/public/client/dist:"
+            find . -maxdepth 4 -type d -name dist -o -name public || true
+            exit 1
+          fi
+
+          echo "Final _site content:"
+          ls -la _site
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: client/dist
+          path: _site
 
   deploy:
     needs: build
